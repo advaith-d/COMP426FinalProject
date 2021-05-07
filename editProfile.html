@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Movie Taste Comparer</title>
+        <link rel="stylesheet" href="stylo.css">
+    </head>
+    <body>
+        <h1 class="title">Movie Taste Comparer</h1>
+        <button id="logout" class="logout">Log Out</button>
+        <div id="nav2">
+            <ul>
+                <li><a href="movieRating.html" id="rateMovies">Rate Movies</a></li>
+                <li><a href="compareTaste.html" id="compareTaste">Compare Your Taste</a></li>
+                <li><div class="dropdown" id="likesDislikes">
+                    <button class="dropbtn">Likes/Dislikes/Have Not Seen</button>
+                    <div class="dropdown-content">
+                        <a href="likes.html" style="color: rgba(155, 112, 255, 0.767);">Liked Movies</a>
+                        <a href="dislikes.html" style="color:rgba(155, 112, 255, 0.767);">Disliked Movies</a>
+                        <a href="unseen.html" style="color:rgba(155, 112, 255, 0.767)">Movies You Haven't Seen</a>
+                    </div>
+                </div></li>
+                <li class="active" style="float: right;"><a id="editProfile" style="color: rgba(155, 112, 255, 0.767);"">Edit Profile</a></li>
+            </ul>
+        </div>
+
+        <div id="profileForm" style="padding-top:150px"></div>
+
+        <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-analytics.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-auth.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-firestore.js"></script>
+
+        <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyCX6I48iIDFb5v8KA_klC-OYFhLHBi8r1k",
+            authDomain: "movietastecomparer.firebaseapp.com",
+            projectId: "movietastecomparer",
+            storageBucket: "movietastecomparer.appspot.com",
+            messagingSenderId: "35328194866",
+            appId: "1:35328194866:web:da4aa284507bab42babf2b",
+            measurementId: "G-3CZR21SDVM"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+        firebase.analytics();
+        </script>
+
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="node_modules/jquery/dist/jquery.js"></script>
+        <script src="editProfileScript.js" type="module"></script>
+    </body>
+</html>
