@@ -38,7 +38,8 @@ $(function(){
                 id: user.uid,
                 liked: [],
                 disliked: [],
-                notSeen: []
+                notSeen: [],
+                dark: true
             });
         }).then(() => {
             window.location.href = 'movieRating.html';

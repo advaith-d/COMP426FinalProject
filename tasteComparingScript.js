@@ -40,8 +40,11 @@ export function generateUser(){
                         
                         total = total - similarities;
                         let percentSimilar;
-                        if(total === 0){
+                        if(total === 0 && similarities > 0){
                             percentSimilar = 100;
+                        }
+                        else if(total === 0 && similarities === 0){
+                            percentSimilar = 0;
                         }
                         else{
                             percentSimilar = (similarities / total) * 100;

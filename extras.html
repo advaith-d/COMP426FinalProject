@@ -3,35 +3,36 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
         <title>Movie Taste Comparer</title>
         <link rel="stylesheet" href="stylo.css">
-
-        <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     </head>
     <body>
         <h1 class="title">Movie Taste Comparer</h1>
         <button id="logout" class="logout">Log Out</button>
-        <br>
         <div id="nav2">
             <ul>
                 <li><a href="movieRating.html" id="rateMovies">Rate Movies</a></li>
                 <li><a href="compareTaste.html" id="compareTaste">Compare Your Taste</a></li>
-                <li><div class="dropdown" class="active" id="likesDislikes">
-                        <button class="dropbtn" style="background-color: white; color: rgba(155, 112, 255, 0.767);">Likes/Dislikes/Have Not Seen</button>
-                        <div class="dropdown-content">
-                            <a href="likes.html" style="color: rgba(155, 112, 255, 0.767);">Liked Movies</a>
-                            <a href="dislikes.html" style="color:rgba(155, 112, 255, 0.767)">Disliked Movies</a>
-                            <a href="unseen.html" style="color:white; background-color: rgba(155, 112, 255, 0.767);">Movies You Haven't Seen</a>
-                        </div>
-                    </div></li>
-                    <li><a href="extras.html" id="extras">Extras</a></li>
+                <li><div class="dropdown" id="likesDislikes">
+                    <button class="dropbtn">Likes/Dislikes/Have Not Seen</button>
+                    <div class="dropdown-content">
+                        <a href="likes.html" style="color: rgba(155, 112, 255, 0.767);">Liked Movies</a>
+                        <a href="dislikes.html" style="color:rgba(155, 112, 255, 0.767);">Disliked Movies</a>
+                        <a href="unseen.html" style="color:rgba(155, 112, 255, 0.767)">Movies You Haven't Seen</a>
+                    </div>
+                </div></li>
+                <li><a class="active" style="color: rgba(155, 112, 255, 0.767);" href="extras.html" id="extras">Extras</a></li>
                 <li style="float: right;"><a href="editProfile.html" id="editProfile">Edit Profile</a></li>
             </ul>
         </div>
-        
-        <h2>Movies You Haven't Seen</h2>
-        <div id="unseen"></div>
+        <div class="grid-container">
+            <div class="grid-item" id="player"><button class="button" id="randomTrack">Generate Random Track</button></div>
+            <div class="grid-item" id="payMe"><p>Give me money, because why not?</p></div>
+            <div class="grid-item"><button class="button" id="jokeButton">Click Here for an Awful Joke</button>
+                <div id="joke"></div></div>  
+            <div class="grid-item"><h3>Current Weather in Chapel Hill</h3>
+                <div id="forecast"></div></div>
+          </div>
 
         <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-app.js"></script>
         <script src="https://www.gstatic.com/firebasejs/8.4.2/firebase-analytics.js"></script>
@@ -59,7 +60,7 @@
 
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="node_modules/jquery/dist/jquery.js"></script>
-        <script type="module" src="unseenScript.js"></script>
+        <script type="module" src="extrasScript.js"></script>
 
         <script>
             auth.onAuthStateChanged(function(user){
@@ -73,6 +74,12 @@
                     }
                 });
             });
+        </script>
+
+        <script
+            async
+            src="https://pay.google.com/gp/p/js/pay.js"
+            onload="console.log('TODO: add onload function')">
         </script>
     </body>
 </html>

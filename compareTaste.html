@@ -21,6 +21,7 @@
                         <a href="unseen.html" style="color:rgba(155, 112, 255, 0.767)">Movies You Haven't Seen</a>
                     </div>
                 </div></li>
+                <li><a href="extras.html" id="extras">Extras</a></li>
                 <li style="float: right;"><a href="editProfile.html" id="editProfile">Edit Profile</a></li>
             </ul>
         </div>
@@ -152,12 +153,24 @@
                                 document.querySelector(".selection").innerHTML = selectedUser;
                                 // Replace Input value with the selected value
                                 document.querySelector("#autoComplete").value = selection;
-                                // Console log autoComplete data feedback
+
                                 document.getElementById("users").innerHTML = `<button class="button" id="clear">Clear Search Results<button>`;
-                                console.log(feedback);
                         })
                     });
                 }
+            });
+        </script>
+        <script>
+            auth.onAuthStateChanged(function(user){
+                let userData = db.collection("users").doc(user.uid);
+                userData.get().then((doc) =>{
+                    if(doc.data().dark){
+                        document.body.style.backgroundColor = "rgb(71, 71, 71)";
+                    }
+                    else{
+                        document.body.style.backgroundColor = "white";
+                    }
+                });
             });
         </script>
         <script type="module" src="tasteComparingScript.js"></script>

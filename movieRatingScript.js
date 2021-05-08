@@ -1,6 +1,6 @@
 const baseURL = 'https://api.themoviedb.org/3/';
 const APIKey = '119ee26a5933bb494a0a06de3fb035a3';
-const streamingAPIKey = 'i2nf4RZX34KHlmu1aql5fQe0IezcrjixMEntySHk';
+const streamingAPIKey = 'n4gKk589hMlg7ErWXVPJVRkK4MIkGLqJBwufBhFY';
 let movieId;
 let index = 0;
 let page = 1;
@@ -25,7 +25,7 @@ export function generateMovie(){
         page++;
         index = 0;
     }
-    fetch(baseURL + 'discover/movie?api_key=' + APIKey + '&language=en-US&sort_by=vote_average.desc&include_adult=false&include_video=false&vote_count.gte=200&page=' + page)
+    fetch(baseURL + 'discover/movie?api_key=' + APIKey + '&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&vote_count.gte=200&page=' + page)
     .then((result)=>{
         return result.json();
     }).then((data)=>{
@@ -51,6 +51,7 @@ export function generateMovie(){
                 });
             }
         });
+
         fetch(baseURL + 'movie/' + movieId + '?api_key=' + APIKey)
         .then((result)=>{
             return result.json();
@@ -58,8 +59,8 @@ export function generateMovie(){
         .then((data) =>{
             let date = data.release_date.substring(0, 4);
             
-            document.getElementById("film").innerHTML = `<img src="https://image.tmdb.org/t/p/w342` + data.poster_path + `">
-                                                            <h2>` + data.title + ` (` +  date + `) </h2>`;
+            document.getElementById("film").innerHTML = `<figure><img src="https://image.tmdb.org/t/p/w342` + data.poster_path + `">
+                                                            <figcaption class="movie">` + data.title + ` (` +  date + `) </figcaption></figure>`;
 
             fetch('https://api.watchmode.com/v1/search/?apiKey=' + streamingAPIKey + '&search_field=imdb_id&search_value=' + data.imdb_id, {method:'Get'})
             .then((res) => res.json())
@@ -69,12 +70,12 @@ export function generateMovie(){
                 .then((res) => res.json())
                 .then((sources)=>{
                     let sourcesList = sources.filter(element => element.region === "US" && element.type == "sub");
-                    let streamingAvailability = `<h2>Available to watch on:</h2><ul>`;
+                    let streamingAvailability = `<p>Available to watch on:</p><ul>`;
                     
                     if(sourcesList.length > 0){
                         for(let i = 0; i < sourcesList.length; i++){
                             if(sourcesList[i].source_id in streamersID){
-                                streamingAvailability = streamingAvailability.concat(`<li><h2>` + streamersID[sourcesList[i].source_id] + `</h2></li>`);
+                                streamingAvailability = streamingAvailability.concat(`<li><p>` + streamersID[sourcesList[i].source_id] + `</p></li>`);
                             };
                         };
                     };

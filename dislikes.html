@@ -9,7 +9,7 @@
 
         <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     </head>
-    <body style="background-color: rgb(71, 71, 71);">
+    <body>
         <h1 class="title">Movie Taste Comparer</h1>
         <button id="logout" class="logout">Log Out</button>
         <br>
@@ -25,6 +25,7 @@
                             <a href="unseen.html" style="color:rgba(155, 112, 255, 0.767)">Movies You Haven't Seen</a>
                         </div>
                     </div></li>
+                    <li><a href="extras.html" id="extras">Extras</a></li>
                 <li style="float: right;"><a href="editProfile.html" id="editProfile">Edit Profile</a></li>
             </ul>
         </div>
@@ -59,5 +60,19 @@
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script src="node_modules/jquery/dist/jquery.js"></script>
         <script type="module" src="dislikesScript.js"></script>
+
+        <script>
+            auth.onAuthStateChanged(function(user){
+                let userData = db.collection("users").doc(user.uid);
+                userData.get().then((doc) =>{
+                    if(doc.data().dark){
+                        document.body.style.backgroundColor = "rgb(71, 71, 71)";
+                    }
+                    else{
+                        document.body.style.backgroundColor = "white";
+                    }
+                });
+            });
+        </script>
     </body>
 </html>
